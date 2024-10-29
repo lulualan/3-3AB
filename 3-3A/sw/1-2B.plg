@@ -1,0 +1,16 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+E:\µ¥Æ¬»ú\3-3AB\sw\1-2B.uvproj
+Project File Date:  09/24/2024
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling 1.c...
+linking...
+Program Size: data=9.0 xdata=0 code=129
+creating hex file from "1-2B"...
+"1-2B" - 0 Error(s), 0 Warning(s).

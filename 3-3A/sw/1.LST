@@ -1,0 +1,61 @@
+C51 COMPILER V9.01   1                                                                     10/29/2024 20:37:40 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE 1
+OBJECT MODULE PLACED IN 1.OBJ
+COMPILER INVOKED BY: F:\keil\C51\BIN\C51.EXE 1.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <reg51.h>              //包含头文件reg51.h
+   2          #define  OFF   1                    //OFF表示灯灭
+   3          #define  ON     0                    //ON表示灯亮
+   4          
+   5          sbit   light=P1^0;                  //灯泡连接至P1.0
+   6          sbit   light_up=P0^0;            //亮度加强按键连接P0.0
+   7          sbit   light_down=P0^1 ;      //亮度减弱按键连接P0.1
+   8          
+   9          void delay(unsigned int i)     // 延时函数 
+  10          {   unsigned  int k;
+  11   1          for(k=0 ; k<i; k++)  ;   }
+  12          void main()                     //主函数
+  13          { int i ,j;
+  14   1         i=0;j=500;                                    //灯最暗时的延时参数初值
+  15   1         while(1) { light=ON; delay(i);   //灯亮，延时
+  16   2                 light=OFF; delay(j);          //灯灭，延时
+  17   2                 light_up = 1; //
+  18   2              if(light_up==0)                  //按键按下？
+  19   2                  {  delay(100);                      //去抖动
+  20   3                 if(light_up==0)                  //再次判断按键按下
+  21   3                 { j--;i++;                           //调整延时参数
+  22   4                 if(j==0) {j=500;i=0;}        //调动最亮，再返回最暗
+  23   4                       }  }
+  24   2              if(light_down==0)      //按键按下？
+  25   2              { delay(100);               //去抖动
+  26   3                if(light_down==0)       //再次判断按键按下
+  27   3                {  j++;i--;             //调整延时参数
+  28   4                   if(i==0) {i=500;j=0;}   //调动最暗，再返回最亮
+  29   4                       }
+  30   3                    }  
+  31   2              }   
+  32   1         }
+  33          
+  34          
+  35          
+  36          
+  37          
+  38          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    114    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
